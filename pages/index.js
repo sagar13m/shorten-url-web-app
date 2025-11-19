@@ -213,14 +213,14 @@ export default function Dashboard() {
   const pageData = filtered.slice(page*rowsPerPage, page*rowsPerPage + rowsPerPage);
   const totalClicks = links.reduce((s,l)=> s + (l.clicks||0), 0);
   const handleRequestSort = (property) => { const isAsc = orderBy===property && orderDir==="asc"; setOrderDir(isAsc?"desc":"asc"); setOrderBy(property); };
-  const exportVisibleCsv = () => downloadCsv(pageData.map(r=>({ code: r.code, url: r.url, clicks: r.clicks||0, lastClickedAt: r.lastClickedAt||"", createdAt: r.createdAt||"" })), "tinylink-visible.csv");
+  const exportVisibleCsv = () => downloadCsv(pageData.map(r=>({ code: r.code, url: r.url, clicks: r.clicks||0, lastClickedAt: r.lastClickedAt||"", createdAt: r.createdAt||"" })), "shorten-url-visible.csv");
 
   return (
     <Box sx={{ minHeight: "100vh", bgcolor: "#f8fafc", pb: isMobile ? 10 : 4 }}>
       <AppBar position="sticky" elevation={0} sx={{ bgcolor: "primary.main", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
         <Toolbar sx={{ gap:2 }}>
           <LinkIcon sx={{ display: { xs: 'none', sm: 'block' } }} />
-          <Typography variant="h6" sx={{ flexGrow: 1, fontWeight:700, fontSize:{ xs:'1.1rem', sm:'1.25rem' } }}>TinyLink</Typography>
+          <Typography variant="h6" sx={{ flexGrow: 1, fontWeight:700, fontSize:{ xs:'1.1rem', sm:'1.25rem' } }}>Shorten-URL</Typography>
 
           {!isMobile ? (
             <TextField size="small" placeholder="Search by code or URL" value={search}
@@ -399,7 +399,7 @@ export default function Dashboard() {
         </DialogContent>
         <DialogActions>
           <Button onClick={()=>setQrTarget(null)}>Close</Button>
-          <Button variant="contained" startIcon={<DownloadIcon/>} onClick={() => { if (!qrDataUrl) { setSnack({ severity:'error', message:'QR not ready' }); return; } const a=document.createElement('a'); a.href=qrDataUrl; a.download=`tinylink-${qrTarget.code}.png`; document.body.appendChild(a); a.click(); a.remove(); setSnack({ severity:'success', message:'QR downloaded' }); }}>Download</Button>
+          <Button variant="contained" startIcon={<DownloadIcon/>} onClick={() => { if (!qrDataUrl) { setSnack({ severity:'error', message:'QR not ready' }); return; } const a=document.createElement('a'); a.href=qrDataUrl; a.download=`shorten-url-${qrTarget.code}.png`; document.body.appendChild(a); a.click(); a.remove(); setSnack({ severity:'success', message:'QR downloaded' }); }}>Download</Button>
         </DialogActions>
       </Dialog>
 

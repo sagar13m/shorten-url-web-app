@@ -4,6 +4,11 @@ A production‑quality URL shortener built using **Next.js**, **Node.js API rout
 Includes full analytics, QR generation, mobile‑friendly UI, and MUI‑based modern dashboard.
 
 ---
+## check web app live from here
+
+https://shorten-url-web-app.vercel.app/
+
+---
 
 ## ✨ Features
 
